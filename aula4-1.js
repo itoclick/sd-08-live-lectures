@@ -44,18 +44,18 @@ let isEven = ((num1 + num2) % 2 ) == 0;
 console.log(isEven);
 
 // E o num1 + num2 + num3?
-isEven = ((num1 + num2 + num3) % 2 ) == 0;
+isEven = ((num1 + num2 + num3) % 2 ) === "0";
 
 console.log(isEven);
 
 
 // Switch
 
-let weekDay = 18;
+let weekDay = 1;
 
 switch(weekDay) {
     case 1:
-        console.log("Domingo")
+        console.log("Domingo");
         break;
     case 2:
         console.log("Segunda-feira")
