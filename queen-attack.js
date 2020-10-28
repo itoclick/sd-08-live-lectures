@@ -3,8 +3,8 @@ let posicaoRainhaLinha = 3;
 let posicaoRainhaColuna = 6;
 
 //posicao da outra peca
-let posicaoPecaLinha = 2;
-let posicaoPecaColuna = 7;
+let posicaoPecaLinha = 5;
+let posicaoPecaColuna = 2;
 
 //identifica se o ataque pode ocorrer ou não
 let ataqueBemSucedido = false;
