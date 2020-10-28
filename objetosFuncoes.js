@@ -20,22 +20,12 @@ estudante.endereco = {
 
 
 for (let key in estudante ) {
-  console.log(key, estudante[key]);
+   console.log(key, estudante[key]);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-function trybe(estudanteTrybe) {
-  let pessoaDesenvolvedora = estudanteTrybe;
+function trybe(estudante) {
+  let pessoaDesenvolvedora = estudante;
 
   pessoaDesenvolvedora.hardSkills = 10;
   pessoaDesenvolvedora.softSkills = 10;
@@ -44,3 +34,16 @@ function trybe(estudanteTrybe) {
 
   return pessoaDesenvolvedora;
 };
+
+console.log(trybe(estudante));
+
+
+function soma (num1, num2) {
+  return num1 + num2;
+};
+
+let valor1 = 10;
+let valor2 = 5;
+let valorSomado = soma(valor1, valor2);
+
+console.log(valorSomado);

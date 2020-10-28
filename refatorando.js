@@ -1,32 +1,44 @@
 //Média
-let num1 = 10;
-let num2 = 20;
-let num3 = 30;
+function media (num1, num2, num3) {
+  return (num1 + num2 + num3) / 3;
+};
 
-let media = (num1 + num2 + num3) / 3;
-
-console.log(media);
+console.log(media(10, 20, 30));
 
 // ---------------------------------------------------------
 //Nome completo
-let nome = 'Gustavo';
-let sobrenome = 'Caetano';
-let nomeCompleto = nome + ' ' + sobrenome;
+function fullName (nome, sobrenome) {
+  return (nome + ' ' + sobrenome);
+};
 
-console.log(nomeCompleto);
+console.log(fullName('Gustavo', 'Caetano'));
 
 // ---------------------------------------------------------
 //Gerar Array Com 100 Caracteres
+function geraArray (caracter) {
+  let array = [];
+  for (let index = 0; index < 100; index += 1) {
+    array.push(caracter);
+  }
+  return array;
+};
 
+console.log(geraArray(10));
 
 
 // ---------------------------------------------------------
 //mega-sena <3
-let firstNumber = Math.ceil(Math.random() * 60);
-let secondNumber = Math.ceil(Math.random() * 60);
-let thirdNumber = Math.ceil(Math.random() * 60);
-let fourthNumber = Math.ceil(Math.random() * 60);
-let fifthNumber = Math.ceil(Math.random() * 60);
-let sixthNumber = Math.ceil(Math.random() * 60);
+function randomNumber (maxValue) {
+  return Math.ceil(Math.random() * maxValue);
+};
 
-console.log(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber, sixthNumber);
+function generateNumber (numero) {
+  let numbers = [];
+  for (let index = 0; index < numero; index += 1 ){
+    numbers.push(randomNumber(100));
+  }
+  return numbers;
+};
+
+let megaSenaNumbers = generateNumber(10);
+console.log(megaSenaNumbers);
