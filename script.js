@@ -66,3 +66,5 @@ for (let index = 0; index < daysList.length; index += 1) {
 function alteraCor(elementos, cor){
   document.querySelector(elementos).style.backgroundColor = cor;
 };
+
+alteraCor('#btn-holiday', 'blue');
