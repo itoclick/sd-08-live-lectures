@@ -58,11 +58,11 @@ for (let index = 0; index < daysList.length; index += 1) {
   let day = daysList[index];
 
   let dayItem = document.createElement('li');
-  if (day === 2 | day === 15) {
+  if (day === 2 || day === 15) {
     dayItem.className = 'holiday';
     dayItem.innerHTML = day;
     getDaysList.appendChild(dayItem);
-  } else if (day === 6 | day === 13 | day === 27) {
+  } else if (day === 6 || day === 13 || day === 27) {
     dayItem.className = 'friday-day';
     dayItem.innerHTML = day;
     getDaysList.appendChild(dayItem);
