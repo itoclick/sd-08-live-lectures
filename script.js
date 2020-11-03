@@ -23,8 +23,14 @@ btnFriday.addEventListener('click', function() {
   }
 });
 
-const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
-const weekDaysList = document.querySelector('.week-days');
+
+
+
+
+//DIAS DA SEMANA
+
+let weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+let weekDaysList = document.querySelector('.week-days');
 
 for (let index = 0; index < weekDays.length; index += 1) {
   let days = weekDays[index];
@@ -35,16 +41,23 @@ for (let index = 0; index < weekDays.length; index += 1) {
   weekDaysList.appendChild(dayListItem);
 };
 
-const daysList = [];
+
+
+
+
+//DIAS DO MÊS
+
+let daysList = [];
 for (index = 1; index < 31; index += 1) {
   daysList.push(index);
 };
 
-const getDaysList = document.querySelector('#days');
+let getDaysList = document.querySelector('#days');
 
 for (let index = 0; index < daysList.length; index += 1) {
-  const day = daysList[index];
-  const dayItem = document.createElement('li');
+  let day = daysList[index];
+
+  let dayItem = document.createElement('li');
   if (day === 2 | day === 15) {
     dayItem.className = 'holiday';
     dayItem.innerHTML = day;
@@ -63,8 +76,8 @@ for (let index = 0; index < daysList.length; index += 1) {
   }
 };
 
+
+
 function alteraCor(elementos, cor){
   document.querySelector(elementos).style.backgroundColor = cor;
 };
-
-alteraCor('#btn-holiday', 'blue');
