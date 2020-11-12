@@ -30,33 +30,33 @@ body {
 }
 
 .speaker-form {
-  /* background-color: rgb(246, 247, 248); */
-  /* border: 1px solid rgb(214, 217, 220); */
-  /* border-radius: 3px; */
-  /* width: 80%; */
-  /* padding: 50px; */
-  /* margin: 0 auto 40px auto; */
+  background-color: rgb(246, 247, 248);
+  border: 1px solid rgb(214, 217, 220);
+  border-radius: 3px;
+  width: 80%;
+  padding: 50px;
+  margin: 0 auto 40px auto;
 }
 
 .line-content {
-  /* margin: 20px; */
+  margin: 20px;
 }
 
 .form-row {
-  /* margin-bottom: 40px; */
+  margin-bottom: 40px;
 }
 
 .form-row input[type="text"] {
-  /* background-color: rgb(255, 255, 255); */
-  /* border: 1px solid rgb(214, 217, 220); */
-  /* border-radius: 3px; */
-  /* width: 100%; */
-  /* padding: 7px; */
-  /* font-size: 14px; */
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(214, 217, 220);
+  border-radius: 3px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
 }
 
 .form-row label {
-  /* margin-top: 15px; */
+  margin-top: 15px;
 }
 
 .legacy-form-row {
