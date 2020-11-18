@@ -318,4 +318,8 @@ footer ul li:nth-child(4) {
   .newsletter button {
     margin-top: 10px;
   }
+
+  footer ul li i {
+    font-size: 40px;
+  }
 }
