@@ -314,4 +314,8 @@ footer ul li:nth-child(4) {
   .features .grid {
     flex-direction: column;
   }
+
+  .newsletter button {
+    margin-top: 10px;
+  }
 }
