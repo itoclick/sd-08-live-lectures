@@ -1,23 +1,66 @@
 const appendPokemon = (pokemon, name) => {
   let ul = document.querySelector('ul');
   let li = document.createElement('li');
-  let pokemonName = document.querySelector('h1');
   li.innerHTML = pokemon;
-  pokemonName.innerHTML = name;
   ul.appendChild(li);
 }
 
-const fetchPokemon = () => {
-  fetch('https://pokeapi.co/api/v2/pokemon/kakuna')
+const getPokemon = (pokemon, callback) => {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     .then((response) => {
       response.json().then((data) => {
-        data.moves.map((value) => {
-          appendPokemon(value.move.name, data.name);
-        });
+        appendPokemon(data.name);
+        callback ? callback() : undefined;
       });
     });
 };
 
-window.onload = fetchPokemon();
+const fetchPokemon = () => {
+  getPokemon('pikachu',
+    getPokemon('squirtle',
+      getPokemon('kakuna',
+        getPokemon('charizard')
+      )
+    )
+  );
+};
+
+const getPokemonPromise = (pokemon) => {
+  return new Promise((resolve, reject) => {
+    if (pokemon === 'squirtle') {
+      reject('Esse pokemon é muito top para esta lista.');
+    }else {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+      .then((response) => {
+        response.json()
+          .then((data) => {
+            appendPokemon(data.name);
+            resolve();
+          });
+      });
+    }
+  });
+};
+
+// const promisePokemon = () => {
+//   getPokemonPromise('pikachu')
+//     .then(() => getPokemonPromise('squirtle'))
+//     .then(() => getPokemonPromise('kakuna'))
+//     .then(() => getPokemonPromise('charizard'))
+//     .catch((error) => console.log(error));
+// };
+
+const promisePokemon = async () => {
+  try {
+    await getPokemonPromise('pikachu');
+    await getPokemonPromise('kakuna');
+    await getPokemonPromise('squirtle');
+    await getPokemonPromise('charizard');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+window.onload = promisePokemon();
 
 //JSON - JavaScript Object Notation
