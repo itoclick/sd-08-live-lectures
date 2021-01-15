@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginInput from './LoginInput';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -16,22 +17,18 @@ class LoginForm extends React.Component {
     });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    alert('Login funcionou');
+  }
+
   render() {
     const { login, password } = this.state;
     return (
       <section className="login-form">
         <h1>Login</h1>
-        <form>
-          <label>
-            Login
-            <input
-              type="text"
-              value={login}
-              onChange={this.handleChange}
-              name="login"
-              id="login"
-            />
-          </label>
+        <form onSubmit={this.handleSubmit}>
+          <LoginInput value={login} onChange={this.handleChange} />
           <label>
             Password
             <input
@@ -42,6 +39,7 @@ class LoginForm extends React.Component {
               id="password"
             />
           </label>
+          <button type="submit">Login</button>
         </form>
       </section>
     );
