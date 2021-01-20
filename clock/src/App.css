@@ -1,0 +1,27 @@
+.App {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.App span {
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.App section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.App button {
+  background-color: #bfe2ae;
+  border: none;
+  border-radius: 4px;
+  color: #0f0e2a;
+  font-size: 18px;
+  font-weight: 300;
+  height: 30px;
+  margin-top: 20px;
+  width: 300px;
+}
