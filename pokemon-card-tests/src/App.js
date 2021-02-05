@@ -16,19 +16,20 @@ class App extends React.Component {
     });
   }
 
-  handleClick(pokemon) {
-    fetch(`https://api.pokemontcg.io/v1/cards?name=${pokemon}`)
-      .then((resolve) => resolve.json())
-      .then((data) => this.setState({ data: data.cards[0] }));
+  async handleClick(pokemon) {
+    const res = await fetch(`https://api.pokemontcg.io/v1/cards?name=${pokemon}`);
+    const pokemons = await res.json();
+    this.setState({ data: pokemons.cards[0] });
   }
 
   render() {
     const { data, pokemon } = this.state;
     return (
-      <div className="App-header">
-        <div>
+      <main className="App-header">
+        <section>
           <h1>Pokémon Cards</h1>
-        </div>
+          <h3>Pokémon Cards</h3>
+        </section>
         <div>
           <input
             type="text"
@@ -50,7 +51,7 @@ class App extends React.Component {
             </div>
           )}
         </div>
-      </div>
+      </main>
     );
   }
 }
