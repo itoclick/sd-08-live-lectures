@@ -1,58 +1,74 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('routes', () => {
-  test('navigating from home to comments', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+describe('App.js', () => {
+  test('teste inicial', () => {
+    const { history } = renderWithRouter(<App />);
 
-    const personalInfo = screen.getByText(/Página sobre mim/i);
-    expect(personalInfo).toBeInTheDocument();
+    const aboutMeText = screen.getByRole('heading', {
+      level: 1,
+    });
 
-    fireEvent.click(getByText(/Deixe um comentário/i));
+    expect(aboutMeText).toBeInTheDocument();
+
+    const projectsLink = screen.getByRole('link', {
+      name: /projetos/i,
+    });
+
+    userEvent.click(projectsLink);
+
+    const projectsText = screen.getByRole('heading', {
+      level: 1,
+      name: /página de projetos/i,
+    });
+
+    expect(projectsText).toBeInTheDocument();
+
     const { pathname } = history.location;
-    expect(pathname).toBe('/comments');
 
-    const project = getByText(/Comente!/i);
-    expect(project).toBeInTheDocument();
-  });
-
-  test('navigating from home to projects', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-
-    const personalInfo = getByText(/Página sobre mim/i);
-    expect(personalInfo).toBeInTheDocument();
-
-    fireEvent.click(getByText(/Projetos/i));
-    const { pathname } = history.location;
     expect(pathname).toBe('/projects');
-
-    const project = getByText(/Página de projetos/i);
-    expect(project).toBeInTheDocument();
-  });
-
-  test('landing on a bad page shows error 404', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-
-    const route = '/pagina-que-nao-existe';
-    history.push(route);
-
-    const pageNotFound = getByText(/Página não encontrada/i);
-    expect(pageNotFound).toBeInTheDocument();
   });
 });
 
-describe('comment form', () => {
-  test('commenting and show comment on the screen', () => {
-    const { getByText, getByTestId } = renderWithRouter(<App />);
+describe('App.js comments', () => {
+  test('verifica se o comentário digitado aparece na tela', () => {
+    const { history } = renderWithRouter(<App />);
 
-    fireEvent.click(getByText(/Deixe um comentário/i));
-    const input = screen.getByRole('textbox');
-    // fireEvent.change(input, { target: { value: 'my comment' } });
-    userEvent.type(input, 'my comment');
-    fireEvent.click(getByTestId('button-comment'));
-    expect(getByText(/my comment/i)).toBeInTheDocument();
+    const aboutMeText = screen.getByRole('heading', {
+      level: 1,
+      name: 'Página sobre mim',
+    });
+
+    expect(aboutMeText).toBeInTheDocument();
+
+    const commentsLink = screen.getByRole('link', {
+      name: 'Deixe um comentário',
+    });
+
+    userEvent.click(commentsLink);
+
+    const commentText = screen.getByRole('heading', {
+      level: 1,
+      name: 'Comente!',
+    });
+
+    expect(commentText).toBeInTheDocument();
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/comments');
+
+    const inputComment = screen.getByRole('textbox');
+    userEvent.type(inputComment, 'qualquer texto');
+
+    const submitButton = screen.getByRole('button', {
+      name: 'Add Comment!',
+    });
+    userEvent.click(submitButton);
+
+    const comment = screen.getByText('qualquer texto');
+    expect(comment).toBeInTheDocument();
   });
 });
