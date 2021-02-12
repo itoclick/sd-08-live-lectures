@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import selectMovieAction from '../actions/movieActions';
 
 class Sidebar extends React.Component {
   render() {
-    const { categories } = this.props;
+    const { categories, selectMovie } = this.props;
     return (
       <aside>
         {
@@ -36,4 +38,18 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = (state) => ({
+  categories: state.movies.categories,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  selectMovie: (category, movie) => dispatch(
+    selectMovieAction(category, movie),
+  ),
+});
+
+// store.getState();
+
+// store.dispatch();
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

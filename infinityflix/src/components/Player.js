@@ -1,26 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Player extends React.Component {
   render() {
-    const { movie } = this.props;
+    const { selectedMovie, selectedCategory } = this.props;
     return (
       <div>
         <h1>
-          {movie.title}
+          {selectedMovie.title}
         </h1>
         <h3>
-          {/* {categories.name} */}
+          {selectedCategory.name}
           {' '}
           -
           {' '}
-          {movie.released}
+          {selectedMovie.released}
         </h3>
         <section>
           <iframe
             title="trailer"
             width="420"
             height="315"
-            src={ movie.link }
+            src={ selectedMovie.link }
           />
         </section>
       </div>
@@ -28,4 +29,9 @@ class Player extends React.Component {
   }
 }
 
-export default Player;
+const mapStateToProps = (state) => ({
+  selectedMovie: state.movies.selectedMovie,
+  selectedCategory: state.movies.selectedCategory,
+});
+
+export default connect(mapStateToProps, null)(Player);

@@ -1,30 +1,22 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import Sidebar from './components/Sidebar';
 import Player from './components/Player';
 import Header from './components/Header';
-import categoriesData from './data';
+import store from './store';
 
 import './index.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      categories: categoriesData,
-    };
-  }
-
   render() {
-    const { categories } = this.state;
     return (
-      <div>
+      <Provider store={ store }>
         <Header />
         <main className="main">
-          <Player movie={ categories[0].movies[0] } />
-          <Sidebar categories={ categories } />
+          <Player />
+          <Sidebar />
         </main>
-      </div>
+      </Provider>
     );
   }
 }
