@@ -5,15 +5,15 @@ import Map from 'pigeon-maps';
 
 import latitudeImg from '../assets/latitude.svg';
 import longitudeImg from '../assets/longitude.svg';
-import { requestISSLocation as requestISSLocationAction } from '../actions';
+import { fetchISSLocation as fetchISSLocationThunk } from '../actions';
 
 const TWO_SECONDS = 2000;
 
 class ISSLocation extends Component {
   componentDidMount() {
-    const { requestISSLocation } = this.props;
+    const { fetchISSLocation } = this.props;
     this.timer = setInterval(() => {
-      requestISSLocation({ latitude: 10, longitude: 10 });
+      fetchISSLocation();
     }, TWO_SECONDS);
   }
 
@@ -71,8 +71,8 @@ const mapStateToProps = ({ issLocation: { latitude, longitude } }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestISSLocation: ({ latitude, longitude }) => dispatch(
-    requestISSLocationAction({ latitude, longitude }),
+  fetchISSLocation: () => dispatch(
+    fetchISSLocationThunk(),
   ),
 });
 

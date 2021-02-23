@@ -1,6 +1,33 @@
-export const REQUEST_ISS_LOCATION = 'REQUEST_ISS_LOCATION';
+import { getCurrentISSLocation } from '../services/issAPI';
 
-export const requestISSLocation = (payload) => ({
+export const REQUEST_ISS_LOCATION = 'REQUEST_ISS_LOCATION';
+export const REQUEST_ISS_LOCATION_SUCCESS = 'REQUEST_ISS_LOCATION_SUCCESS';
+export const REQUEST_ISS_LOCATION_ERROR = 'REQUEST_ISS_LOCATION_ERROR';
+
+export const requestISSLocation = () => ({
   type: REQUEST_ISS_LOCATION,
-  payload,
+  payload: {
+    isFetching: true,
+  },
 });
+
+export const requestISSLocationSuccess = ({ iss_position: { latitude, longitude } }) => ({
+  type: REQUEST_ISS_LOCATION_SUCCESS,
+  payload: { latitude, longitude, isFetching: false },
+});
+
+export const requestISSLocationError = (error) => ({
+  type: REQUEST_ISS_LOCATION_ERROR,
+  payload: { error, isFetching: false },
+});
+
+export const fetchISSLocation = () => (dispatch) => {
+  dispatch(requestISSLocation());
+  getCurrentISSLocation()
+    .then((issLocationResponse) => dispatch(
+      requestISSLocationSuccess(issLocationResponse),
+    ))
+    .catch((issLocationError) => dispatch(
+      requestISSLocationError(issLocationError),
+    ));
+};
