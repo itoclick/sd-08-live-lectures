@@ -28,7 +28,7 @@ class Login extends React.Component {
             type="password"
             onChange={ (e) => this.setState({ password: e.target.value }) }
             placeholder="senha"
-            data-testid="input-senha"
+            data-testid="input-password"
           />
         </section>
         <div className="link">
