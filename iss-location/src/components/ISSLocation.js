@@ -5,6 +5,7 @@ import Map from 'pigeon-maps';
 
 import latitudeImg from '../assets/latitude.svg';
 import longitudeImg from '../assets/longitude.svg';
+import loadingImg from '../assets/loading.svg';
 import { fetchISSLocation as fetchISSLocationThunk } from '../actions';
 
 const TWO_SECONDS = 2000;
@@ -22,7 +23,7 @@ class ISSLocation extends Component {
   }
 
   render() {
-    const { latitude, longitude } = this.props;
+    const { latitude, longitude, isFetching } = this.props;
 
     return (
       <main>
@@ -38,36 +39,41 @@ class ISSLocation extends Component {
             <Marker anchor={ [latitude, longitude] } />
           </Map>
         </div>
-        <section className="lat-long-section">
-          <div className="lat-long">
-            <img
-              className="lat-long-img"
-              src={ latitudeImg }
-              width={ 24 }
-              height={ 24 }
-              alt="latitude"
-            />
-            <span>{latitude}</span>
-          </div>
-          <div className="lat-long">
-            <img
-              className="lat-long-img"
-              src={ longitudeImg }
-              width={ 24 }
-              height={ 24 }
-              alt="longitude"
-            />
-            <span>{longitude}</span>
-          </div>
-        </section>
+        {isFetching
+          ? <img src={ loadingImg } alt="loading animation" width={ 32 } height={ 32 } />
+          : (
+            <section className="lat-long-section">
+              <div className="lat-long">
+                <img
+                  className="lat-long-img"
+                  src={ latitudeImg }
+                  width={ 24 }
+                  height={ 24 }
+                  alt="latitude"
+                />
+                <span>{latitude}</span>
+              </div>
+              <div className="lat-long">
+                <img
+                  className="lat-long-img"
+                  src={ longitudeImg }
+                  width={ 24 }
+                  height={ 24 }
+                  alt="longitude"
+                />
+                <span>{longitude}</span>
+              </div>
+            </section>
+          )}
       </main>
     );
   }
 }
 
-const mapStateToProps = ({ issLocation: { latitude, longitude } }) => ({
+const mapStateToProps = ({ issLocation: { latitude, longitude, isFetching } }) => ({
   latitude,
   longitude,
+  isFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({

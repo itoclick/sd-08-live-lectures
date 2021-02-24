@@ -21,13 +21,25 @@ export const requestISSLocationError = (error) => ({
   payload: { error, isFetching: false },
 });
 
-export const fetchISSLocation = () => (dispatch) => {
+export const fetchISSLocation = () => async (dispatch) => {
   dispatch(requestISSLocation());
-  getCurrentISSLocation()
-    .then((issLocationResponse) => dispatch(
+
+  try {
+    const issLocationResponse = await getCurrentISSLocation();
+    dispatch(
       requestISSLocationSuccess(issLocationResponse),
-    ))
-    .catch((issLocationError) => dispatch(
+    );
+  } catch (error) {
+    dispatch(
       requestISSLocationError(issLocationError),
-    ));
+    );
+  }
+
+  // getCurrentISSLocation()
+  //   .then((issLocationResponse) => dispatch(
+  //     requestISSLocationSuccess(issLocationResponse),
+  //   ))
+  //   .catch((issLocationError) => dispatch(
+  //     requestISSLocationError(issLocationError),
+  //   ));
 };
