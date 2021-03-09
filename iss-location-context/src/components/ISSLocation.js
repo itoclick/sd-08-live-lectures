@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Marker from 'pigeon-marker';
 import Map from 'pigeon-maps';
 
 import latitudeImg from '../assets/latitude.svg';
 import longitudeImg from '../assets/longitude.svg';
 import loadingImg from '../assets/loading.svg';
-import { fetchISSLocation as fetchISSLocationThunk } from '../actions';
 
 const TWO_SECONDS = 2000;
 
@@ -70,16 +68,4 @@ class ISSLocation extends Component {
   }
 }
 
-const mapStateToProps = ({ issLocation: { latitude, longitude, isFetching } }) => ({
-  latitude,
-  longitude,
-  isFetching,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchISSLocation: () => dispatch(
-    fetchISSLocationThunk(),
-  ),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ISSLocation);
+export default ISSLocation;
