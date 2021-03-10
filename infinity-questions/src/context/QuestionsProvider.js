@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import QuestionsContext from './QuestionsContext';
-import { getQuestions } from '../services/api';
+import { getQuestions, createQuestion as createQuestionService } from '../services/api';
 
 function QuestionsProvider({ children }) {
   // isLoading
@@ -19,8 +19,17 @@ function QuestionsProvider({ children }) {
     setIsLoading(false);
   };
 
+  const createQuestion = async (newQuestion) => {
+    setIsLoading(true);
+    await createQuestionService(newQuestion);
+    setQuestions([...questions, newQuestion]);
+    setIsLoading(false);
+  };
+
   return (
-    <QuestionsContext.Provider value={ { isLoading, questions, fetchQuestions } }>
+    <QuestionsContext.Provider
+      value={ { isLoading, questions, fetchQuestions, createQuestion } }
+    >
       {children}
     </QuestionsContext.Provider>
   );

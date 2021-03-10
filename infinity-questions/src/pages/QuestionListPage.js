@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import QuestionList from '../components/QuestionList';
 import QuestionsContext from '../context/QuestionsContext';
