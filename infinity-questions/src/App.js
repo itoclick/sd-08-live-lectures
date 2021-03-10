@@ -3,11 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 
 import QuestionListPage from './pages/QuestionListPage';
 import NewQuestionPage from './pages/NewQuestionPage';
+import QuestionsProvider from './context/QuestionsProvider';
+
 import './App.css';
 
-class App extends React.Component {
-  render() {
-    return (
+function App() {
+  return (
+    <QuestionsProvider>
       <main className="App">
         <header className="main-header">
           <section className="main-header-title">
@@ -27,8 +29,8 @@ class App extends React.Component {
           </Switch>
         </section>
       </main>
-    );
-  }
+    </QuestionsProvider>
+  );
 }
 
 export default App;

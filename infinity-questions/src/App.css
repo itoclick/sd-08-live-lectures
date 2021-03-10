@@ -64,11 +64,15 @@ body {
 
 .question-card-header {
   font-weight: 900;
+  display: flex;
+  align-items: center;
 }
 
 .question-card-image {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
 }
 
 .question-card p {

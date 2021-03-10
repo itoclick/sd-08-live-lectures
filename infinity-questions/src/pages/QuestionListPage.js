@@ -1,12 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import QuestionList from '../components/QuestionList';
 import QuestionsContext from '../context/QuestionsContext';
 
 class QuestionListPage extends React.Component {
   async componentDidMount() {
-    const { getQuestions } = this.context;
-    getQuestions();
+    const { fetchQuestions } = this.context;
+    fetchQuestions();
   }
 
   render() {
